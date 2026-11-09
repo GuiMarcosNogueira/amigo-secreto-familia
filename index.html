@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Amigo Secreto da Família</title>
+    <meta
+      name="description"
+      content="Sorteio de Amigo Secreto justo e privado para a família, direto no celular."
+    />
+    <meta name="theme-color" content="#a3262a" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/icone.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <meta name="apple-mobile-web-app-title" content="Amigo Secreto" />
+    <script>
+      // Aplica o tema escolhido antes da primeira pintura, para a tela não piscar.
+      try {
+        var tema = localStorage.getItem('amigo-secreto:tema');
+        if (tema === 'claro' || tema === 'escuro') {
+          document.documentElement.setAttribute('data-tema', tema);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="raiz"></div>
+    <noscript>Para usar o Amigo Secreto, ative o JavaScript no seu navegador.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
