@@ -1,0 +1,89 @@
+/* Cores, tamanhos e espaços do app. Tema claro por padrão. */
+:root {
+  color-scheme: light;
+
+  --fundo: #fdf8f3;
+  --superficie: #ffffff;
+  --superficie-suave: #f6ece2;
+  --texto: #2a1f1c;
+  --texto-suave: #5a4842;
+  --borda: #85746d;
+  --principal: #a3262a;
+  --principal-forte: #861c20;
+  --sobre-principal: #ffffff;
+  --link: #8f1f23;
+  --foco: #1a56c4;
+  --sucesso-fundo: #e1f2e5;
+  --sucesso-texto: #17512b;
+  --atencao-fundo: #fdecc8;
+  --atencao-texto: #5c3d00;
+  --whatsapp: #0b6b3d;
+  --sobre-whatsapp: #ffffff;
+  --sombra: 0 1px 3px rgb(60 30 20 / 0.14);
+
+  --fonte: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --texto-base: 1.125rem; /* 18 px com a fonte padrão do aparelho */
+  --texto-pequeno: 1rem;
+  --texto-grande: 1.375rem;
+  --texto-titulo: 1.75rem;
+  --texto-sorteado: 2.5rem;
+
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.5rem;
+  --espaco-6: 2rem;
+
+  --raio: 0.75rem;
+  --toque: 2.75rem; /* 44 px: alvo mínimo de toque */
+  --largura: 35rem; /* coluna de leitura, também no computador */
+}
+
+/* Tema escuro: quando o aparelho pede e a pessoa não escolheu o claro... */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) {
+    color-scheme: dark;
+    --fundo: #1b1513;
+    --superficie: #2a211e;
+    --superficie-suave: #362b27;
+    --texto: #f7eee8;
+    --texto-suave: #d3c2ba;
+    --borda: #a39088;
+    --principal: #f4a7a1;
+    --principal-forte: #ffc4bf;
+    --sobre-principal: #2b0b0c;
+    --link: #f7b3ad;
+    --foco: #9cc2ff;
+    --sucesso-fundo: #173a23;
+    --sucesso-texto: #bfe8cb;
+    --atencao-fundo: #4a3500;
+    --atencao-texto: #ffe2a3;
+    --whatsapp: #7fdcaa;
+    --sobre-whatsapp: #06261a;
+    --sombra: 0 1px 3px rgb(0 0 0 / 0.5);
+  }
+}
+
+/* ...ou quando a pessoa escolheu o escuro no app. */
+:root[data-tema='escuro'] {
+  color-scheme: dark;
+  --fundo: #1b1513;
+  --superficie: #2a211e;
+  --superficie-suave: #362b27;
+  --texto: #f7eee8;
+  --texto-suave: #d3c2ba;
+  --borda: #a39088;
+  --principal: #f4a7a1;
+  --principal-forte: #ffc4bf;
+  --sobre-principal: #2b0b0c;
+  --link: #f7b3ad;
+  --foco: #9cc2ff;
+  --sucesso-fundo: #173a23;
+  --sucesso-texto: #bfe8cb;
+  --atencao-fundo: #4a3500;
+  --atencao-texto: #ffe2a3;
+  --whatsapp: #7fdcaa;
+  --sobre-whatsapp: #06261a;
+  --sombra: 0 1px 3px rgb(0 0 0 / 0.5);
+}
