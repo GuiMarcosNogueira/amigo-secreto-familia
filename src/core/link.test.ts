@@ -2,7 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { bytesAleatorios } from './aleatorio';
 import { cifrar, deBase64Url, decifrar, paraBase64Url, textoParaBytes } from './cripto';
 import { decifrarLista, derivarAcesso } from './desejos';
-import { criarPayload, gerarLinks, lerPayload, payloadDaUrl, urlDoLink, type ConteudoDoLink } from './link';
+import {
+  criarPayload,
+  gerarLinks,
+  lerPayload,
+  payloadDaUrl,
+  urlDoLink,
+  type ConteudoDoLink,
+} from './link';
 import { sortear } from './sorteio';
 import type { Evento, Participante } from './tipos';
 
@@ -120,7 +127,14 @@ describe('payload do link', () => {
 
   it('versão desconhecida e lixo', async () => {
     const [, chave, dados] = (await criarPayload(conteudo)).split('.');
-    for (const ruim of [`v2.${chave}.${dados}`, `${chave}.${dados}`, 'v1..', 'olá', '', 'v1.a.b.c']) {
+    for (const ruim of [
+      `v2.${chave}.${dados}`,
+      `${chave}.${dados}`,
+      'v1..',
+      'olá',
+      '',
+      'v1.a.b.c',
+    ]) {
       expect(await lerPayload(ruim)).toEqual({ ok: false });
     }
   });

@@ -78,7 +78,8 @@ export async function tratar(
     if (!token || (await hashDoToken(token)) !== pedido.id) return responder(403, 'sem permissão');
 
     const corpo = pedido.corpo ?? '';
-    if (corpo.length > LIMITES_DA_API.tamanhoMaximo) return responder(413, 'conteúdo grande demais');
+    if (corpo.length > LIMITES_DA_API.tamanhoMaximo)
+      return responder(413, 'conteúdo grande demais');
     if (!FORMATO_CONTEUDO.test(corpo)) return responder(400, 'conteúdo inválido');
 
     const hora = Math.floor(agora() / 3_600_000);

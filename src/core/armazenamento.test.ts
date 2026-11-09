@@ -115,7 +115,11 @@ describe('links', () => {
   it('dado estranho vira null', () => {
     const cofre = cofreEmMemoria();
     expect(lerLinks(cofre)).toBeNull();
-    for (const ruim of ['x', '{}', '{"codigo":"A","criadoEm":"x","links":[{"participante":"A"}]}']) {
+    for (const ruim of [
+      'x',
+      '{}',
+      '{"codigo":"A","criadoEm":"x","links":[{"participante":"A"}]}',
+    ]) {
       cofre.setItem(CHAVES.links, ruim);
       expect(lerLinks(cofre)).toBeNull();
     }

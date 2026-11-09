@@ -13,9 +13,12 @@ export function formatarData(iso: string): string {
 
 /** "R$ 50,00" */
 export function formatarValor(valor: number): string {
-  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-    .format(valor)
-    .replace(/ /g, ' ');
+  return (
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+      .format(valor)
+      // O Intl usa um espaço "duro" depois de R$; trocamos por espaço comum.
+      .replace(/\s/g, ' ')
+  );
 }
 
 /** "9 de novembro, 14:30" no horário do aparelho. */

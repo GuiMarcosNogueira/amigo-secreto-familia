@@ -53,7 +53,9 @@ describe('cliente das listas', () => {
 
     // Caio conhece o endereço, mas tem a chave de outra lista.
     const chaveErrada = (await derivarAcesso(semente())).chave;
-    expect(await lerLista({ id: acessoDoBeto.id, k: chaveErrada }, buscar)).toEqual({ tipo: 'erro' });
+    expect(await lerLista({ id: acessoDoBeto.id, k: chaveErrada }, buscar)).toEqual({
+      tipo: 'erro',
+    });
   });
 
   it('o que trafega e o que fica guardado não tem nada legível', async () => {

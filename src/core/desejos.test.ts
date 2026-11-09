@@ -77,7 +77,8 @@ describe('cifra da lista', () => {
     const dono = await derivarAcesso(semente());
     const outro = await derivarAcesso(semente());
     const conteudo = await cifrarLista(dono.chave, lista);
-    const adulterado = conteudo.slice(0, 30) + (conteudo[30] === 'A' ? 'B' : 'A') + conteudo.slice(31);
+    const adulterado =
+      conteudo.slice(0, 30) + (conteudo[30] === 'A' ? 'B' : 'A') + conteudo.slice(31);
     expect(await decifrarLista(dono.chave, adulterado)).toBeNull();
     expect(await decifrarLista(outro.chave, conteudo)).toBeNull();
     expect(await decifrarLista(dono.chave, 'lixo')).toBeNull();
@@ -99,6 +100,11 @@ describe('limites da lista', () => {
     expect(validarLista([], '')).toBeNull();
     expect(validarLista(['a'], 'x'.repeat(200))).toBeNull();
     expect(validarLista(['a'], 'x'.repeat(201))).toBe('obsLonga');
-    expect(validarLista(Array.from({ length: 11 }, () => 'a'), '')).toBe('muitosItens');
+    expect(
+      validarLista(
+        Array.from({ length: 11 }, () => 'a'),
+        '',
+      ),
+    ).toBe('muitosItens');
   });
 });

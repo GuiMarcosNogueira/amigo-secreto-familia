@@ -7,6 +7,7 @@ import {
   editarParticipante,
   faltamParaSortear,
   interpretarValor,
+  nomesDaRestricao,
   removerParticipante,
   removerRestricao,
   validarEvento,
@@ -57,7 +58,9 @@ describe('evento', () => {
     expect(validarEvento({ ...eventoOk, mensagem: 'x'.repeat(281) }, HOJE).mensagem).toBe(
       'mensagemLonga',
     );
-    expect(validarEvento({ ...eventoOk, mensagem: 'x'.repeat(280) }, HOJE).mensagem).toBeUndefined();
+    expect(
+      validarEvento({ ...eventoOk, mensagem: 'x'.repeat(280) }, HOJE).mensagem,
+    ).toBeUndefined();
   });
 
   it('interpreta valores no jeito brasileiro', () => {
@@ -79,7 +82,10 @@ describe('participantes', () => {
   it('recusa nome vazio, longo e repetido', () => {
     const r = comPessoas('José');
     expect(adicionarParticipante(r, '   ', () => 'x')).toEqual({ ok: false, erro: 'vazio' });
-    expect(adicionarParticipante(r, 'x'.repeat(41), () => 'x')).toEqual({ ok: false, erro: 'longo' });
+    expect(adicionarParticipante(r, 'x'.repeat(41), () => 'x')).toEqual({
+      ok: false,
+      erro: 'longo',
+    });
     expect(adicionarParticipante(r, ' jose ', () => 'x')).toEqual({ ok: false, erro: 'duplicado' });
     expect(adicionarParticipante(r, 'JOSÉ', () => 'x')).toEqual({ ok: false, erro: 'duplicado' });
   });
@@ -117,6 +123,18 @@ describe('restrições', () => {
     expect(um.rascunho.restricoes).toEqual([['p1', 'p2']]);
     expect(adicionarRestricao(um.rascunho, 'p1', 'p2')).toEqual({ ok: false, erro: 'repetida' });
     expect(adicionarRestricao(um.rascunho, 'p2', 'p1')).toEqual({ ok: false, erro: 'repetida' });
+  });
+
+  it('mostra os nomes na ordem da lista de pessoas, não na ordem dos ids', () => {
+    const r: Rascunho = {
+      ...rascunhoVazio(),
+      participantes: [
+        { id: 'z', nome: 'Ana' },
+        { id: 'a', nome: 'Beto' },
+      ],
+      restricoes: [['a', 'z']],
+    };
+    expect(nomesDaRestricao(r, r.restricoes[0]!)).toEqual(['Ana', 'Beto']);
   });
 
   it('recusa a mesma pessoa e pessoas que não existem', () => {

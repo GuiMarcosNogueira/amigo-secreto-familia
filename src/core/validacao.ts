@@ -1,6 +1,7 @@
 import { LIMITES, type Evento, type Id, type Par, type Rascunho } from './tipos';
 
-export type ErroEvento = 'nomeVazio' | 'nomeLongo' | 'dataVazia' | 'dataPassada' | 'valorInvalido' | 'mensagemLonga';
+export type ErroEvento =
+  'nomeVazio' | 'nomeLongo' | 'dataVazia' | 'dataPassada' | 'valorInvalido' | 'mensagemLonga';
 
 export interface ErrosEvento {
   nome?: ErroEvento;
@@ -54,12 +55,7 @@ export function eventoValido(evento: Evento, hoje: string): boolean {
 
 /** Chave de comparação de nomes: sem acentos, sem maiúsculas, sem espaços sobrando. */
 export function chaveDoNome(nome: string): string {
-  return nome
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, ' ');
+  return nome.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim().replace(/\s+/g, ' ');
 }
 
 function arrumarNome(nome: string): string {
@@ -147,6 +143,13 @@ export function removerRestricao(rascunho: Rascunho, a: Id, b: Id): Rascunho {
     ...rascunho,
     restricoes: rascunho.restricoes.filter(([x, y]) => !(x === par[0] && y === par[1])),
   };
+}
+
+/** Nomes de uma restrição, na ordem em que as pessoas aparecem na lista. */
+export function nomesDaRestricao(rascunho: Rascunho, [a, b]: Par): [string, string] {
+  const posicao = (id: Id) => rascunho.participantes.findIndex((p) => p.id === id);
+  const nome = (id: Id) => rascunho.participantes.find((p) => p.id === id)?.nome ?? '';
+  return posicao(a) <= posicao(b) ? [nome(a), nome(b)] : [nome(b), nome(a)];
 }
 
 /** Quantas pessoas ainda faltam para poder sortear (0 = já pode). */
