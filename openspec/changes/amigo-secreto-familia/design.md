@@ -194,14 +194,14 @@ Limite de verificação: a máquina de desenvolvimento é Windows, então Chrome
 - Quem sorteou tem `id` e `K`, mas não o `token`: lê e não grava. O `id` é um hash do `token`, então não dá para voltar dele ao `token`.
 - O servidor valida a gravação conferindo `SHA-256(token) == id`. Não precisa de cadastro prévio nem de tabela de permissões, e por isso o sorteio não depende de internet.
 
-**Conteúdo.** `{ v: 1, itens: string[], obs?: string, em: ISO-8601 }` em JSON, cifrado com `K` e IV aleatório de 12 bytes; vai ao servidor como base64url de `iv ‖ cifra`. A data da última alteração fica dentro do conteúdo cifrado. Limites validados no cliente (10 itens × 100 caracteres, observação de 200) e teto de 4 kB no servidor.
+**Conteúdo.** `{ v: 1, itens: string[], obs?: string, em: ISO-8601 }` em JSON, cifrado com `K` e IV aleatório de 12 bytes; vai ao servidor como base64url de `iv ‖ cifra`. A data da última alteração fica dentro do conteúdo cifrado. Limites validados no cliente (10 itens × 100 caracteres, observação de 200) e teto de 8 kB no servidor (uma lista cheia de emojis, no pior caso, passa de 8 kB depois de cifrada).
 
 **API** (mesma origem, sem CORS):
 
 | Método | Rota | Regra |
 |---|---|---|
 | `GET` | `/api/listas/<id>` | devolve o conteúdo cifrado ou 404 (lista ainda não escrita) |
-| `PUT` | `/api/listas/<id>` | `Authorization: Bearer <token>`; exige `SHA-256(token) == id`, corpo ≤ 4 kB em base64url; grava com validade de 400 dias; última gravação vence |
+| `PUT` | `/api/listas/<id>` | `Authorization: Bearer <token>`; exige `SHA-256(token) == id`, corpo ≤ 8 kB em base64url; grava com validade de 400 dias; última gravação vence |
 
 - `id` precisa ter o formato exato (43 caracteres base64url); fora disso, 400.
 - Limite de gravações por IP com contador de janela fixa no próprio Redis (`INCR` + `EXPIRE`, 30 gravações por hora), sem biblioteca extra. Excesso → 429.
@@ -236,7 +236,7 @@ Alternativas de banco descartadas: Supabase (projetos gratuitos pausam por inati
 - **[O organizador tem todos os links e, tecnicamente, pode abrir os dos outros]** → Inevitável sem login. Mitigação: a interface nunca mostra os pares nem o texto dos links, "Sou eu" pede confirmação, e o README explica com franqueza que o modelo é de confiança.
 - **[Quem tem o link de alguém lê e altera a lista dessa pessoa; o organizador tem todos]** → Mesmo modelo de confiança do sorteio. O servidor e terceiros não leem nada.
 - **[Backend fora do ar ou plano gratuito esgotado]** → Só a lista de desejos é afetada, com aviso amigável; sorteio e revelação seguem. O uso de uma família fica ordens de grandeza abaixo dos limites gratuitos.
-- **[Endpoint público pode receber lixo de terceiros]** → Só aceita gravação cujo `token` bate com o `id`, com teto de 4 kB, limite por IP e validade de 400 dias; o pior caso é ocupar espaço que expira sozinho.
+- **[Endpoint público pode receber lixo de terceiros]** → Só aceita gravação cujo `token` bate com o `id`, com teto de 8 kB, limite por IP e validade de 400 dias; o pior caso é ocupar espaço que expira sozinho.
 - **[Duas edições ao mesmo tempo da mesma lista]** → Última gravação vence; aceitável para uma lista pessoal.
 - **[Listas somem no novo sorteio]** → Sementes novas a cada sorteio; o aviso de "Sortear de novo" diz isso. As antigas expiram sozinhas.
 - **[Planos gratuitos podem mudar]** → O armazenamento fica atrás de uma interface de três funções; trocar de banco é reescrever um adaptador.
