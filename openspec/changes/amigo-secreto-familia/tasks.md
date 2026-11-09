@@ -88,7 +88,7 @@
 - [x] 8.5 Verificar em produção: HTTPS ativo, manifest servido e válido, service worker registrado e controlando a página, app abrindo offline na segunda visita e `sw.js` sem cache longo
 - [x] 8.6 Verificar em produção o fluxo real: gerar um sorteio, abrir um link de revelação direto em aba nova (sem ter aberto o app antes), revelar, e conferir que um link adulterado mostra a mensagem amigável; repetir a abertura do link em um navegador de computador
 - [ ] 8.7 Verificar em produção a lista de desejos: salvar uma lista por um link, ler pelo link de quem sorteou, conferir `GET /api/listas/<id inexistente>` → 404 e uma gravação com `token` errado recusada, e confirmar no painel do Upstash que o valor guardado é ilegível
-- [ ] 8.8 Colocar a URL de produção no `README.md` e na descrição do repositório (`gh repo edit --homepage`), fazer o commit e o push; verificar que o deploy automático é disparado e conclui
+- [x] 8.8 Colocar a URL de produção no `README.md` e na descrição do repositório (`gh repo edit --homepage`), fazer o commit e o push; verificar que o deploy automático é disparado e conclui
 
 ## Workflow follow-up
 
