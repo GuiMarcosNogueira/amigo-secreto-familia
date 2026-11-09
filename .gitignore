@@ -11,3 +11,6 @@ dev-dist
 .DS_Store
 Thumbs.db
 .claude/settings.local.json
+
+.vercel
+.env*

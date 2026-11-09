@@ -2,7 +2,7 @@
 
 Um app simples para organizar o Amigo Secreto da família, feito para funcionar no celular de todo mundo, da criançada aos avós. Sem cadastro, sem anúncio e sem loja de aplicativos.
 
-**Endereço:** _(a URL de produção entra aqui depois da publicação)_
+**Endereço:** https://amigo-secreto-familia-two.vercel.app
 
 ## O que ele faz
 

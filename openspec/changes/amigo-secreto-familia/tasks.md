@@ -82,11 +82,11 @@
 ## 8. Publicação
 
 - [x] 8.1 Adicionar `vercel.json` mínimo (framework Vite, build `npm run build`, saída `dist`; a pasta `api/` vira função automaticamente) e verificar que `npm run build` local continua gerando `dist/` com `sw.js` e o manifest
-- [ ] 8.2 Verificar o login com `vercel whoami` (via `npx vercel`); **se não estiver autenticado, PAUSAR e pedir ao dono do projeto para rodar `vercel login`**, retomando só depois da confirmação
-- [ ] 8.3 Criar o projeto na Vercel ligado ao repositório GitHub (deploy automático a cada push na `main`) e fazer o primeiro deploy de produção; **se a ligação com o GitHub exigir autorização no navegador, PAUSAR e pedir ao dono do projeto**; verificar que o deploy termina com sucesso e anotar a URL de produção
+- [x] 8.2 Verificar o login com `vercel whoami` (via `npx vercel`); **se não estiver autenticado, PAUSAR e pedir ao dono do projeto para rodar `vercel login`**, retomando só depois da confirmação
+- [x] 8.3 Criar o projeto na Vercel ligado ao repositório GitHub (deploy automático a cada push na `main`) e fazer o primeiro deploy de produção; **se a ligação com o GitHub exigir autorização no navegador, PAUSAR e pedir ao dono do projeto**; verificar que o deploy termina com sucesso e anotar a URL de produção
 - [ ] 8.4 Criar o banco Upstash Redis (plano gratuito) pela integração do Marketplace da Vercel e conectá-lo ao projeto; **como isso exige criar conta e aceitar termos no navegador, PAUSAR e pedir ao dono do projeto para fazer, informando o passo a passo**; depois da confirmação, verificar que as variáveis de ambiente do Redis existem no projeto (`vercel env ls`), sem exibir os valores, e refazer o deploy
-- [ ] 8.5 Verificar em produção: HTTPS ativo, manifest servido e válido, service worker registrado e controlando a página, app abrindo offline na segunda visita e `sw.js` sem cache longo
-- [ ] 8.6 Verificar em produção o fluxo real: gerar um sorteio, abrir um link de revelação direto em aba nova (sem ter aberto o app antes), revelar, e conferir que um link adulterado mostra a mensagem amigável; repetir a abertura do link em um navegador de computador
+- [x] 8.5 Verificar em produção: HTTPS ativo, manifest servido e válido, service worker registrado e controlando a página, app abrindo offline na segunda visita e `sw.js` sem cache longo
+- [x] 8.6 Verificar em produção o fluxo real: gerar um sorteio, abrir um link de revelação direto em aba nova (sem ter aberto o app antes), revelar, e conferir que um link adulterado mostra a mensagem amigável; repetir a abertura do link em um navegador de computador
 - [ ] 8.7 Verificar em produção a lista de desejos: salvar uma lista por um link, ler pelo link de quem sorteou, conferir `GET /api/listas/<id inexistente>` → 404 e uma gravação com `token` errado recusada, e confirmar no painel do Upstash que o valor guardado é ilegível
 - [ ] 8.8 Colocar a URL de produção no `README.md` e na descrição do repositório (`gh repo edit --homepage`), fazer o commit e o push; verificar que o deploy automático é disparado e conclui
 
