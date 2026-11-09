@@ -76,8 +76,8 @@
 
 - [x] 7.1 Escrever o `README.md` em português: o que é, como instalar no celular (Android e iPhone), como rodar e testar localmente, como funciona a lista de desejos, como funciona a privacidade (o que fica no aparelho, o que vai cifrado ao servidor e, com franqueza, os limites do modelo sem login), como configurar o banco Upstash para quem quiser publicar a própria cópia e melhorias futuras; verificar que os comandos documentados funcionam como escritos
 - [x] 7.2 Adicionar `LICENSE` (MIT, com o nome do dono do projeto) e revisar o `.gitignore` (`node_modules`, `dist`, `dev-dist`, `.vercel`, arquivos de ambiente); verificar com `git status` que nada indevido está rastreado
-- [ ] 7.3 Verificar o login com `gh auth status`; **se não estiver autenticado, PAUSAR e pedir ao dono do projeto para rodar `gh auth login`**, retomando só depois da confirmação
-- [ ] 7.4 Revisar o histórico (commits em português no padrão Conventional Commits), criar o repositório público com `gh repo create amigo-secreto-familia --public --source . --push` e verificar com `gh repo view` que o repositório está público e com a `main` enviada
+- [x] 7.3 Verificar o login com `gh auth status`; **se não estiver autenticado, PAUSAR e pedir ao dono do projeto para rodar `gh auth login`**, retomando só depois da confirmação
+- [x] 7.4 Revisar o histórico (commits em português no padrão Conventional Commits), criar o repositório público com `gh repo create amigo-secreto-familia --public --source . --push` e verificar com `gh repo view` que o repositório está público e com a `main` enviada
 
 ## 8. Publicação
 
