@@ -70,7 +70,7 @@
 - [x] 6.4 Verificar o fluxo completo no navegador em viewport de celular (375 × 812): criar evento → adicionar participantes → criar restrição → provocar e corrigir um sorteio impossível → sortear → abrir um link em aba nova → revelar e ocultar → abrir link adulterado → "Recomeçar"
 - [x] 6.5 Confirmar pelo painel de rede que nenhuma requisição carrega payload do link, chaves, nomes ou dados do evento, que as únicas requisições com dados são as de `/api/listas/<id>` com conteúdo cifrado e que não há chamadas a outros domínios; confirmar que o `localStorage` não contém os pares em texto legível
 - [x] 6.6 Verificar o fluxo da lista de desejos em viewport de celular e de computador, com três links do mesmo sorteio: A salva a lista, quem tirou A vê a lista após revelar, o terceiro participante não tem como vê-la, a lista de links do organizador não mostra nada, e A edita e a mudança aparece após "Atualizar"
-- [ ] 6.7 Repetir o fluxo completo da 6.4 e da 6.6 em navegador de computador (janela de 1280 px, só com mouse e depois só com teclado) no Chrome, no Edge e no Firefox instalados na máquina, conferindo copiar link, WhatsApp em nova aba, ausência do botão "Compartilhar" onde não há suporte e abertura offline; registrar quais navegadores foram verificados e que o Safari de macOS não pôde ser testado nesta máquina
+- [x] 6.7 Repetir o fluxo completo da 6.4 e da 6.6 em navegador de computador (janela de 1280 px, só com mouse e depois só com teclado) no Chrome, no Edge e no Firefox instalados na máquina, conferindo copiar link, WhatsApp em nova aba, ausência do botão "Compartilhar" onde não há suporte e abertura offline; registrar quais navegadores foram verificados e que o Safari de macOS não pôde ser testado nesta máquina
 
 ## 7. GitHub
 
